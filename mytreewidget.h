@@ -13,6 +13,10 @@ class MyTreeWidget : public QTreeWidget {
 
 protected:
 	void mousePressEvent(QMouseEvent *event) override;
+
+	// QWidget interface
+protected:
+	void mouseDoubleClickEvent(QMouseEvent *event) override;
 };
 
 #endif // MYTREEWIDGET_H

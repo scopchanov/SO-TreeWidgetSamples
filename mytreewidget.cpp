@@ -26,6 +26,7 @@ MyTreeWidget::MyTreeWidget(QWidget *parent) : QTreeWidget(parent) {
     usRow->addChild(laRow);
     usRow->addChild(sfRow);
     usRow->addChild(nyRow);
+	usRow->setExpanded(true);
 
     addTopLevelItem(usRow);
 }
@@ -36,6 +37,14 @@ void MyTreeWidget::mousePressEvent(QMouseEvent *event)
 
 	if (item->flags() & Qt::ItemIsSelectable)
 		QTreeWidget::mousePressEvent(event);
-	else if (item->childCount())
+}
+
+void MyTreeWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	QTreeWidget::mouseDoubleClickEvent(event);
+
+	QTreeWidgetItem *item = itemAt(event->pos());
+
+	if (item->childCount())
 		item->setExpanded(!item->isExpanded());
 }
