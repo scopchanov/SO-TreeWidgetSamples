@@ -28,6 +28,14 @@ MyTreeWidget::MyTreeWidget(QWidget *parent) : QTreeWidget(parent) {
     usRow->addChild(nyRow);
 
     addTopLevelItem(usRow);
+}
 
-    connect(this, &QTreeWidget::itemSelectionChanged, [&] { qDebug() << selectedItems().size(); });
+void MyTreeWidget::mousePressEvent(QMouseEvent *event)
+{
+	QTreeWidgetItem *item = itemAt(event->pos());
+
+	if (item->flags() & Qt::ItemIsSelectable)
+		QTreeWidget::mousePressEvent(event);
+	else if (item->childCount())
+		item->setExpanded(!item->isExpanded());
 }

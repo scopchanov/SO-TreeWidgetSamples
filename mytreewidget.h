@@ -10,6 +10,9 @@ class MyTreeWidget : public QTreeWidget {
     Q_OBJECT
   public:
     explicit MyTreeWidget(QWidget *parent = Q_NULLPTR);
+
+protected:
+	void mousePressEvent(QMouseEvent *event) override;
 };
 
 #endif // MYTREEWIDGET_H
